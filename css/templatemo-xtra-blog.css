@@ -107,8 +107,8 @@ hr {
 .tm-nav-item:hover .tm-nav-link,
 .tm-nav-item.active .tm-nav-link
  {
-    color: #0CC;
-    background-color: white;
+    color: #F0F0F0;
+    background-color: transparent;
     text-decoration: none;
 }
 
@@ -626,7 +626,13 @@ display: inline-block;
 .divTableCell, .divTableHead {
 	border: 0px solid #999999;
 	display: table-cell;
-	padding: 3px 10px;
+	padding: 3px 5px;
+}
+.divTableCell_left {
+	/*border: 1px solid #999999;*/
+	display: table-cell;
+    width: 30%;
+	padding: 3px 5px;
 }
 .divTableHeading {
 	background-color: #EEE;

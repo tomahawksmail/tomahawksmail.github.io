@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 — Page Lost in the Couch</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#7c3aed;
+      --muted:#9aa4b2;
+      --glass: rgba(255,255,255,0.03);
+      --radius:16px;
+      --safe-font: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--safe-font);
+      background:
+        radial-gradient(600px 600px at 10% 10%, rgba(124,58,237,0.12), transparent 10%),
+        radial-gradient(500px 500px at 90% 90%, rgba(14,165,233,0.06), transparent 12%),
+        var(--bg);
+      color: #e6eef6;
+      -webkit-font-smoothing:antialiased;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }
+
+    .card{
+      width:100%;
+      max-width:980px;
+      background: linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));
+      border-radius:var(--radius);
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      padding:36px;
+      display:grid;
+      grid-template-columns: 260px 1fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    @media (max-width:720px){
+      .card{grid-template-columns:1fr; padding:24px}
+    }
+
+    .robot {
+      background: linear-gradient(180deg,#0b1320 0%, #081019 100%);
+      border-radius:14px;
+      padding:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      min-height:200px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02), 0 8px 20px rgba(0,0,0,0.6);
+    }
+
+    /* Cute robot SVG sizing */
+    .robot svg{ width:160px; height:160px; display:block; }
+
+    .headline{
+      font-size: clamp(20px, 3.2vw, 32px);
+      margin:0 0 6px 0;
+      line-height:1.05;
+      letter-spacing: -0.01em;
+    }
+    .sub{
+      color:var(--muted);
+      margin:0 0 18px 0;
+      font-size:15px;
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      background: linear-gradient(180deg,var(--accent), #5b21b6);
+      color:white;
+      border:0;
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      box-shadow: 0 6px 18px rgba(124,58,237,0.18), 0 1px 0 rgba(255,255,255,0.03) inset;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn:active{ transform: translateY(1px) scale(.997) }
+    .btn.ghost{
+      background:transparent;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,0.04);
+      font-weight:600;
+    }
+
+    .summon {
+      background: linear-gradient(180deg,#4ade80, #16a34a);
+    }
+
+    .small{
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    /* wobble animation for summoned page */
+    @keyframes wobble {
+      0% { transform: rotate(-6deg) translateY(0) }
+      30% { transform: rotate(6deg) translateY(-6px) }
+      60% { transform: rotate(-3deg) translateY(0) }
+      100% { transform: rotate(0) translateY(-2px) }
+    }
+
+    .wobble { animation: wobble .9s cubic-bezier(.2,.9,.3,1) both }
+
+    /* small search input */
+    .search {
+      display:flex;
+      gap:8px;
+      margin-top:18px;
+    }
+    .search input{
+      flex:1;
+      padding:10px 12px;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.03);
+      color: #e6eef6;
+      border-radius:10px;
+      outline:none;
+      font-size:14px;
+    }
+    .search input::placeholder{ color: rgba(230,238,246,0.45) }
+    .search button{
+      padding:10px 12px;
+      border-radius:10px;
+      border:0;
+      background: rgba(255,255,255,0.03);
+      color:var(--muted);
+      cursor:pointer;
+    }
+
+    footer.note{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* little floating crumbs (for humor) */
+    .crumbs{
+      position:absolute;
+      inset:auto 14px 14px auto;
+      display:flex;
+      gap:8px;
+      pointer-events:none;
+      opacity:.75;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .crumbs span{ transform: translateY(0); animation: float 3s ease-in-out infinite; }
+    .crumbs span:nth-child(2){ animation-delay: .5s }
+    .crumbs span:nth-child(3){ animation-delay: 1.1s }
+
+    @keyframes float {
+      0%{ transform: translateY(0) }
+      50%{ transform: translateY(-6px) }
+      100%{ transform: translateY(0) }
+    }
+
+    /* accessibility: focus outlines */
+    .btn:focus, .search input:focus, .search button:focus{
+      outline: 3px solid rgba(124,58,237,0.18);
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+  <main role="main" class="card" aria-labelledby="title">
+    <div class="robot" aria-hidden="true">
+      <!-- Cute robot SVG, purely decorative -->
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1">
+            <stop offset="0" stop-color="#6d28d9"/>
+            <stop offset="1" stop-color="#4f46e5"/>
+          </linearGradient>
+        </defs>
+        <rect x="18" y="16" rx="10" ry="10" width="84" height="68" fill="url(#g)" opacity=".95"/>
+        <rect x="32" y="34" width="56" height="36" rx="6" fill="#071027"/>
+        <circle cx="50" cy="52" r="4" fill="#9dd3ff"/>
+        <circle cx="70" cy="52" r="4" fill="#9dd3ff"/>
+        <rect x="46" y="64" width="28" height="4" rx="2" fill="#7c3aed"/>
+        <rect x="8" y="86" width="104" height="12" rx="6" fill="#0b1220"/>
+        <rect x="44" y="6" width="32" height="14" rx="6" fill="#0b1220"/>
+      </svg>
+
+      <div class="crumbs" aria-hidden="true">
+        <span>crumbs...</span>
+        <span>crumbs...</span>
+        <span>crumbs...</span>
+      </div>
+    </div>
+
+    <section>
+      <h1 id="title" class="headline">404 — Oops, we dropped this page behind the couch</h1>
+      <p class="sub">We looked between the cushions, checked under the rug, and interrogated the houseplant. No luck. The page is missing, possibly living its best life.</p>
+
+      <div class="actions" aria-hidden="false">
+        <button class="btn" onclick="goHome()" id="homeBtn" title="Go home (or press H)">🏠 Take me home</button>
+        <button class="btn ghost" onclick="report()" id="reportBtn" title="Tell the humans this page wandered off">🐞 Report missing page</button>
+        <button class="btn summon" id="summonBtn" title="Try to summon the page">🔮 Summon page</button>
+      </div>
+
+      <div class="search" role="search" aria-label="Search the site">
+        <input id="q" placeholder="Search the site for what you meant (try 'pricing', 'docs', or 'cat pictures')" aria-label="Search the site">
+        <button onclick="doSearch()" aria-label="Search">🔎</button>
+      </div>
+
+      <p class="small">Tip: You can press <kbd>H</kbd> to go home, <kbd>S</kbd> to focus the search box, or click "Summon page". We do not guarantee outcomes.</p>
+      <p class="note" style="margin-top:6px;">If you think this is a mistake, tell us what you were trying to open — maybe we can coax it back.</p>
+    </section>
+  </main>
+
+  <script>
+    // Safe, friendly behavior with basic "summon" gimmick
+    const summonBtn = document.getElementById('summonBtn');
+    const homeBtn = document.getElementById('homeBtn');
+    const reportBtn = document.getElementById('reportBtn');
+    const searchInput = document.getElementById('q');
+
+    function goHome(){
+      // If you want to send som
